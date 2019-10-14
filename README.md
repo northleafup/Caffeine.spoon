@@ -12,7 +12,7 @@ Copy and change from [Here](https://github.com/Hammerspoon/Spoons/tree/master/Sp
 
 ## How to use in MacOs  
 
-###### First 
+###### 
 
 ```bash
 cd ~
@@ -20,17 +20,27 @@ cd .hammerspoon/Spoons
 git clone https://github.com/northleafup/Caffeine.spoon.git
 ```
 
-###### Second
+Then：
 
-Create yourseft config .If there is no directory "~/.hammerspoon/private", please make it 
+If you use [my config](https://github.com/northleafup/my-hammerspoon), please refer [this](https://github.com/northleafup/my-hammerspoon#2-load-specify-spoon).
+
+else：
+
+Update init.lua file ,add content as follow
+
+```lua
+hs.loadSpoon("Caffeine")
+```
+
+## How to redefine the active or inactive icon
+
+If there is no directory "~/.hammerspoon/private", please make it 
 
 ```bash
 cd ~
 cd .hammerspoon
 mkdir private
 ```
-
-###### Three
 
 If you want to update the `active` and `inactive` image, you can redefine it . 
 
@@ -49,17 +59,5 @@ inActiveIcon = "caffeine-off.pdf"
 ```
 
 Next you shoud place the image file to folder `~/.hammerspoon/Spoons/Caffeine.spoon/`
-
-###### Four
-
-If you use [my config](https://github.com/northleafup/my-hammerspoon), please refer [this](https://github.com/northleafup/my-hammerspoon#2-load-specify-spoon).
-
-else：
-
-Update init.lua file ,add content as follow
-
-```lua
-hs.loadSpoon("Caffeine")
-```
 
 
