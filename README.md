@@ -63,7 +63,3 @@ hs.loadSpoon("Caffeine")
 ```
 
 
-
-## Thanks To
-
-[dot_hammerspoon](https://github.com/scottcs/dot_hammerspoon)
