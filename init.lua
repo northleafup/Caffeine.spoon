@@ -19,6 +19,15 @@ obj.license = "MIT - https://opensource.org/licenses/MIT"
 obj.menuBarItem = nil
 obj.hotkeyToggle = nil
 
+-- combine two path 
+local function getPathAbsolute(path1, path2)
+    return hs.fs.pathToAbsolute(string.format("%s/%s",path1,path2))
+end
+--get user home dir file
+local function getUserFilePathhAbsolute(path)
+    return hs.fs.pathToAbsolute(string.format("%s/%s",os.getenv('HOME'),path))
+end
+
 -- Internal function used to find our location, so we know where to load files from
 local function script_path()
     local str = debug.getinfo(2, "S").source:sub(2)
@@ -29,6 +38,30 @@ obj.spoonPath = script_path()
 function obj:init()
     self.menubar = hs.menubar.new()
     obj:start()
+end
+
+
+
+obj.paths = {}
+obj.paths.base  = os.getenv('HOME')
+obj.paths.hs    = getPathAbsolute(obj.paths.base, '.hammerspoon')
+
+--read user customer config 
+customer =dofile(getPathAbsolute(obj.paths.hs ,'private/caffeine.lua'))
+--if user config does not esist 
+if not customer  then
+    customer = dofile(obj.spoonPath.."/caffeine.lua")
+end
+--if user config does not esist 
+if not activeIcon then
+    activeIcon = "active.png"
+end
+if not inActiveIcon then
+    inActiveIcon = "inative.png"
+end
+--scheduled time 
+if time_scheduled  then 
+ obj.time_scheduled = time_scheduled
 end
 
 --- Caffeine:bindHotkeys(mapping)
@@ -94,9 +127,9 @@ end
 function obj.setDisplay(state)
     local result
     if state then
-        result = obj.menuBarItem:setIcon(obj.spoonPath.."/active.png")
+        result = obj.menuBarItem:setIcon(string.format("%s%s",obj.spoonPath,activeIcon ))
     else
-        result = obj.menuBarItem:setIcon(obj.spoonPath.."/inactive.png")
+        result = obj.menuBarItem:setIcon(string.format("%s%s",obj.spoonPath,inActiveIcon))
     end
 end
 
